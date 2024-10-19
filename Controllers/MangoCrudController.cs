@@ -36,7 +36,7 @@ namespace MangoAPI.Controllers
         {
             try
             {
-                var errors = VALIDATOR.ValidateModel(insertRecord, new InsertRecordRequestValidator());
+                var errors = Validation.ValidateModel(insertRecord, new InsertRecordRequestValidator());
                 if(errors is not null)
                 {
                     _insertRecordResponse.IsSuccess = false;
@@ -61,7 +61,7 @@ namespace MangoAPI.Controllers
         {
             try
             {
-                var errors = VALIDATOR.ValidateModel(insertRecord, new InsertRecordRequestValidator());
+                var errors = Validation.ValidateModel(insertRecord, new InsertRecordRequestValidator());
                 if(errors is not null)
                 {
                     _insertRecordResponse.IsSuccess = false;
