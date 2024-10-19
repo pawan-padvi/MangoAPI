@@ -61,7 +61,17 @@ namespace MangoAPI.Controllers
         {
             try
             {
-                return Ok(_mangoCrudDL.UpdateRecord(insertRecord));
+                var errors = VALIDATOR.ValidateModel(insertRecord, new InsertRecordRequestValidator());
+                if(errors is not null)
+                {
+                    _insertRecordResponse.IsSuccess = false;
+                    _insertRecordResponse.Message = GlobalVariables.must_be_validate;
+                    _insertRecordResponse.Body = errors;
+                }
+                else
+                {
+                    return Ok(_mangoCrudDL.UpdateRecord(insertRecord));
+                }
 
             }
             catch(Exception exc)
